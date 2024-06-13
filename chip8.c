@@ -53,3 +53,8 @@ void chip_ret(chip *ch) {
 	ch->sp--;
 	ch->pc = ch->stack[ch->sp];
 }
+
+// 1nnn
+void chip_jump_nnn(chip *ch) {
+	ch->pc = fetch_nnn(ch);
+}
