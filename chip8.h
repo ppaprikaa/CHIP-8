@@ -19,4 +19,10 @@ typedef struct {
 	uint8_t keyboard[16];
 } chip;
 
+// initialization function
+// returns 1 on fail, 0 on success
+int chip_init(chip *ch);
+
+void chip_run(chip *ch);
+
 #endif
