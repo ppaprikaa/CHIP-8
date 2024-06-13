@@ -80,3 +80,8 @@ void chip_sne_xkk(chip *ch) {
 void chip_se_xy(chip *ch) {
 	if (ch->registers[fetch_x(ch)] == ch->registers[fetch_y(ch)]) ch->pc += 2;
 }
+
+// 6xkk
+void chip_ld_xkk(chip *ch) {
+	ch->registers[fetch_x(ch)] = fetch_kk(ch);
+}
