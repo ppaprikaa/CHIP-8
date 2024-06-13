@@ -70,3 +70,8 @@ void chip_call_nnn(chip *ch) {
 void chip_se_xkk(chip *ch) {
 	if (ch->registers[fetch_x(ch)] == fetch_kk(ch)) ch->pc += 2;
 }
+
+// 4xkk
+void chip_sne_xkk(chip *ch) {
+	if (ch->registers[fetch_x(ch)] != fetch_kk(ch)) ch->pc += 2;
+}
