@@ -91,3 +91,8 @@ void chip_add_xkk(chip *ch) {
 	uint8_t x = fetch_x(ch);
 	ch->registers[x] = ch->registers[x] + fetch_kk(ch);
 }
+
+// 8xy0
+void chip_ld_xy(chip *ch) {
+	ch->registers[fetch_x(ch)] = ch->registers[fetch_y(ch)];
+}
