@@ -65,3 +65,8 @@ void chip_call_nnn(chip *ch) {
 	ch->pc++;
 	ch->pc = fetch_nnn(ch);
 }
+
+// 3xkk
+void chip_se_xkk(chip *ch) {
+	if (ch->registers[fetch_x(ch)] == fetch_kk(ch)) ch->pc += 2;
+}
