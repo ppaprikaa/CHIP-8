@@ -108,3 +108,9 @@ void chip_and_xy(chip *ch) {
 	uint8_t x = fetch_x(ch);
 	ch->registers[x] = ch->registers[x] & ch->registers[fetch_y(ch)];
 }
+
+// 8xy3
+void chip_xor_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+	ch->registers[x] = ch->registers[x] ^ ch->registers[fetch_y(ch)];
+}
