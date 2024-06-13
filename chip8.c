@@ -1,6 +1,7 @@
 #include "chip8.h"
 
 #include <stdint.h>
+#include <string.h>
 
 int8_t fontset[80] = {
 	0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
@@ -21,22 +22,27 @@ int8_t fontset[80] = {
 	0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
 
-uint8_t fetch_x(chip *chip) {
-	return (chip->mem[chip->pc] << 8 | chip->mem[chip->pc + 1] & 0x0F00) >> 8;
+uint8_t fetch_x(chip *ch) {
+	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1] & 0x0F00) >> 8;
 }
 
-uint8_t fetch_y(chip *chip) {
-	return (chip->mem[chip->pc] << 8 | chip->mem[chip->pc + 1] & 0x00F0) >> 4;
+uint8_t fetch_y(chip *ch) {
+	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1] & 0x00F0) >> 4;
 }
 
-uint16_t fetch_nnn(chip *chip) {
-	return (chip->mem[chip->pc] << 8 | chip->mem[chip->pc + 1]) & 0x0FFF;
+uint16_t fetch_nnn(chip *ch) {
+	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1]) & 0x0FFF;
 }
 
-uint8_t fetch_kk(chip *chip) {
-	return (chip->mem[chip->pc] << 8 | chip->mem[chip->pc + 1]) & 0x00FF;
+uint8_t fetch_kk(chip *ch) {
+	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1]) & 0x00FF;
 }
 
-uint8_t fetch_n(chip *chip) {
-	return (chip->mem[chip->pc] << 8 | chip->mem[chip->pc + 1]) & 0x000F;
+uint8_t fetch_n(chip *ch) {
+	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1]) & 0x000F;
+}
+
+void chip_cls(chip *ch) {
+	memset(&ch->framebuffer, 0, 2048);
+	ch->render = 1;
 }

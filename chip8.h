@@ -17,6 +17,10 @@ typedef struct {
 	uint8_t mem[4096];
 	uint8_t framebuffer[64 * 32];
 	uint8_t keyboard[16];
+
+	// if 1 then render screen
+	// else do not render
+	int render;
 } chip;
 
 // initialization function
