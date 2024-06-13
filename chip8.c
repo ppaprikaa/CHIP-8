@@ -42,11 +42,13 @@ uint8_t fetch_n(chip *ch) {
 	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1]) & 0x000F;
 }
 
+// 00E0
 void chip_cls(chip *ch) {
 	memset(&ch->framebuffer, 0, 2048);
 	ch->render = 1;
 }
 
+// 00EE
 void chip_ret(chip *ch) {
 	ch->sp--;
 	ch->pc = ch->stack[ch->sp];
