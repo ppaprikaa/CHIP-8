@@ -124,3 +124,12 @@ void chip_add_xy(chip *ch) {
 	ch->registers[0x0F] = result > 255 ? 1 : 0;
 	ch->registers[x] = (uint8_t)result;
 }
+
+//8xy5
+void chip_sub_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+	uint8_t y = fetch_y(ch);
+	
+	ch->registers[0x0F] = ch->registers[x] > ch->registers[y] ? 1 : 0;
+	ch->registers[x] = ch->registers[x] - ch->registers[y];
+}
