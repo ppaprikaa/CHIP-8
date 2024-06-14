@@ -2,6 +2,7 @@
 #include "consts.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -37,6 +38,21 @@ int chip_init(chip *ch) {
 	memset(ch->mem, 0, MEMORY_CAP);
 	memset(ch->framebuffer, 0, DISPLAY_LEN);
 	memcpy(ch->mem, fontset, 80*sizeof(uint8_t));
+
+	return 0;
+}
+
+int load_rom(chip *ch, char *rom_filepath) {
+	FILE *fp = fopen(rom_filepath, "r");
+	if (!fp) {
+		fprintf(stderr, "error: <load_rom> failed to open file: %s", rom_filepath);
+		return 1;
+	}
+
+	fseek(fp, 0, SEEK_END);
+	int len = ftell(fp);
+	fseek(fp, 0, SEEK_SET);
+	fread(ch->mem + 0x200, sizeof(uint16_t), len, fp);
 
 	return 0;
 }
