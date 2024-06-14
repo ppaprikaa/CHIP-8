@@ -1,4 +1,5 @@
 #include "chip8.h"
+#include "consts.h"
 
 #include <stdlib.h>
 #include <stdint.h>
@@ -178,6 +179,45 @@ void chip_jump_0nnn(chip *ch) {
 // Cxkk
 void chip_rnd_xkk(chip *ch) {
 	ch->registers[fetch_x(ch)] = fetch_kk(ch) & (uint8_t)random();
+}
+
+// Dxyn
+void chip_drw_xyn(chip *ch) {
+	ch->registers[0x0F] = 0;
+
+	uint8_t x = fetch_x(ch);
+	uint8_t y = fetch_y(ch);
+	uint8_t n = fetch_n(ch);
+
+	size_t xpos = (size_t)ch->registers[x] % DISPLAY_WIDTH;
+	size_t ypos = (size_t)ch->registers[y] % DISPLAY_HEIGHT;
+
+	for (size_t row = 0; row < n; row++) {
+		uint8_t bits = ch->mem[(size_t)ch->i + row];
+		size_t cy = (ypos + row) % DISPLAY_HEIGHT;
+
+		for (size_t col = 0; col < 8; col++) {	
+			size_t cx = (xpos + col) % DISPLAY_WIDTH;
+			uint8_t current_color = ch->framebuffer[cy * DISPLAY_WIDTH + cx];
+			uint8_t color = bits & (0x01 << (7 - (uint8_t)col));
+			if (color > 0) {
+				if (current_color > 0) {
+					ch->framebuffer[cy * DISPLAY_WIDTH + cx] = 0;
+					ch->registers[0x0F] = 1;
+				} else {
+					ch->framebuffer[cy * DISPLAY_WIDTH + cx] = 1;
+				}
+			}
+
+			if (cx == DISPLAY_WIDTH - 1) {
+				break;
+			}
+		}
+		if (cy == DISPLAY_HEIGHT - 1) {
+			break;
+		}
+	}
+	ch->render = 1;
 }
 
 // Ex9E
