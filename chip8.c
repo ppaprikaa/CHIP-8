@@ -204,3 +204,8 @@ void chip_ld_dtx(chip *ch) {
 void chip_ld_stx(chip *ch) {
 	ch->st = ch->registers[fetch_x(ch)];
 }
+
+// Fx1E
+void chip_add_ix(chip *ch) {
+	ch->i += ch->registers[fetch_x(ch)];
+}
