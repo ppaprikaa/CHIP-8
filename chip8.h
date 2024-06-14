@@ -32,7 +32,7 @@ int chip_init(chip *ch);
 // rom filepath
 // return 1 on fail, for example failed to open rom file
 // return 0 on success
-int chip_run(chip *ch, char *rom_filepath);
+int chip_run(chip *ch);
 
 // rom filepath
 // return 1 on fail
