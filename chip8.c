@@ -114,3 +114,13 @@ void chip_xor_xy(chip *ch) {
 	uint8_t x = fetch_x(ch);
 	ch->registers[x] = ch->registers[x] ^ ch->registers[fetch_y(ch)];
 }
+
+// 8xy4
+void chip_add_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+	uint8_t y = fetch_y(ch);
+
+	int result = (int)ch->registers[x] + (int)ch->registers[y];
+	ch->registers[0x0F] = result > 255 ? 1 : 0;
+	ch->registers[x] = (uint8_t)result;
+}
