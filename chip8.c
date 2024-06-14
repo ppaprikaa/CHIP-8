@@ -45,7 +45,7 @@ int chip_init(chip *ch) {
 int load_rom(chip *ch, char *rom_filepath) {
 	FILE *fp = fopen(rom_filepath, "r");
 	if (!fp) {
-		fprintf(stderr, "error: <load_rom> failed to open file: %s", rom_filepath);
+		fprintf(stderr, "error: <load_rom> failed to open file: %s\n", rom_filepath);
 		return 1;
 	}
 
