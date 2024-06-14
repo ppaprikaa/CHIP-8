@@ -228,3 +228,8 @@ void chip_ld_imx(chip *ch) {
 void chip_ld_irmx(chip *ch) {
 	for (size_t i = 0; i < fetch_x(ch); i++) ch->mem[ch->i + i] = ch->registers[i];
 }
+
+// Fx65
+void chip_ld_imrx(chip *ch) {
+	for (size_t i = 0; i < fetch_x(ch); i++) ch->registers[i] = ch->mem[ch->i + i];
+}
