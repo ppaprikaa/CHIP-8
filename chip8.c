@@ -209,3 +209,8 @@ void chip_ld_stx(chip *ch) {
 void chip_add_ix(chip *ch) {
 	ch->i += ch->registers[fetch_x(ch)];
 }
+
+// Fx29
+void chip_ld_ifx(chip *ch) {
+	ch->i = (uint16_t)ch->registers[fetch_x(ch)] * 0x05;
+}
