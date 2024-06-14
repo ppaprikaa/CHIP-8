@@ -141,3 +141,12 @@ void chip_shr_xy(chip *ch) {
 	ch->registers[0x0F] = ch->registers[x] & 0x01;
 	ch->registers[x] = ch->registers[x] / 2;
 }
+
+// 8xy7
+void chip_subn_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+	uint8_t y = fetch_y(ch);
+
+	ch->registers[0x0F] = ch->registers[y] > ch->registers[x] ? 1 : 0;
+	ch->registers[x] = ch->registers[y] - ch->registers[x];
+}
