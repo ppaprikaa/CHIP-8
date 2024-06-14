@@ -16,7 +16,7 @@ typedef struct {
 	uint8_t st;
 	uint8_t dt;
 
-	uint8_t mem[4096];
+	uint8_t mem[MEMORY_CAP];
 	uint8_t framebuffer[DISPLAY_LEN];
 	uint8_t keyboard[16];
 
