@@ -179,3 +179,8 @@ void chip_jump_0nnn(chip *ch) {
 void chip_rnd_xkk(chip *ch) {
 	ch->registers[fetch_x(ch)] = fetch_kk(ch) & (uint8_t)random();
 }
+
+// Ex9E
+void chip_skp_x(chip *ch) {
+	if (ch->keyboard[ch->registers[fetch_x(ch)]] == 1) ch->pc += 2;
+}
