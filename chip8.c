@@ -24,6 +24,23 @@ uint8_t fontset[80] = {
 	0xF0, 0x80, 0xF0, 0x80, 0x80  // F
 };
 
+int chip_init(chip *ch) {
+	ch->i = 0;
+	ch->pc = 0x200;
+	ch->sp = 0;
+	ch->st = 0;
+	ch->dt = 0;
+
+	memset(ch->stack, 0, 16);
+	memset(ch->registers, 0, 16);
+	memset(ch->keyboard, 0, 16);
+	memset(ch->mem, 0, MEMORY_CAP);
+	memset(ch->framebuffer, 0, DISPLAY_LEN);
+	memcpy(ch->mem, fontset, 80*sizeof(uint8_t));
+
+	return 0;
+}
+
 uint8_t fetch_x(chip *ch) {
 	return (ch->mem[ch->pc] << 8 | ch->mem[ch->pc + 1] & 0x0F00) >> 8;
 }
