@@ -182,7 +182,7 @@ void chip_rnd_xkk(chip *ch) {
 
 // Ex9E
 void chip_skp_x(chip *ch) {
-	if (ch->keyboard[ch->registers[fetch_x(ch)]] == 1) ch->pc += 2;
+	if (ch->keyboard[ch->registers[fetch_x(ch)]]) ch->pc += 2;
 }
 
 // ExA1
