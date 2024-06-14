@@ -133,3 +133,11 @@ void chip_sub_xy(chip *ch) {
 	ch->registers[0x0F] = ch->registers[x] > ch->registers[y] ? 1 : 0;
 	ch->registers[x] = ch->registers[x] - ch->registers[y];
 }
+
+// 8xy6
+void chip_shr_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+
+	ch->registers[0x0F] = ch->registers[x] & 0x01;
+	ch->registers[x] = ch->registers[x] / 2;
+}
