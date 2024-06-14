@@ -34,4 +34,9 @@ int chip_init(chip *ch);
 // return 0 on success
 int chip_run(chip *ch, char *rom_filepath);
 
+// rom filepath
+// return 1 on fail
+// return 0 on success
+int load_rom(chip *ch, char *rom_filepath);
+
 #endif
