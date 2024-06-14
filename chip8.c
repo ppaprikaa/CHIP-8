@@ -168,3 +168,8 @@ void chip_sne_xy(chip *ch) {
 void chip_ld_nnn(chip *ch) {
 	ch->i = fetch_nnn(ch);
 }
+
+// Bnnn
+void chip_jump_0nnn(chip *ch) {
+	ch->pc = ch->registers[0x00] + fetch_nnn(ch);
+}
