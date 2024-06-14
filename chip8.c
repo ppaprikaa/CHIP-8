@@ -199,3 +199,8 @@ void chip_ld_xdt(chip *ch) {
 void chip_ld_dtx(chip *ch) {
 	ch->dt = ch->registers[fetch_x(ch)];
 }
+
+// Fx18
+void chip_ld_stx(chip *ch) {
+	ch->st = ch->registers[fetch_x(ch)];
+}
