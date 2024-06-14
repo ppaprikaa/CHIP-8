@@ -1,5 +1,6 @@
 #include "chip8.h"
 
+#include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 
@@ -172,4 +173,9 @@ void chip_ld_nnn(chip *ch) {
 // Bnnn
 void chip_jump_0nnn(chip *ch) {
 	ch->pc = ch->registers[0x00] + fetch_nnn(ch);
+}
+
+// Cxkk
+void chip_rnd_xkk(chip *ch) {
+	ch->registers[fetch_x(ch)] = fetch_kk(ch) & (uint8_t)random();
 }
