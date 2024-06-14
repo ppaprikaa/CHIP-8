@@ -166,7 +166,7 @@ void chip_sne_xy(chip *ch) {
 }
 
 // Annn
-void chip_ld_nnn(chip *ch) {
+void chip_ld_innn(chip *ch) {
 	ch->i = fetch_nnn(ch);
 }
 
