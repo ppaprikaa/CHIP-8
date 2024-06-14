@@ -150,3 +150,11 @@ void chip_subn_xy(chip *ch) {
 	ch->registers[0x0F] = ch->registers[y] > ch->registers[x] ? 1 : 0;
 	ch->registers[x] = ch->registers[y] - ch->registers[x];
 }
+
+// 8xyE
+void chip_shl_xy(chip *ch) {
+	uint8_t x = fetch_x(ch);
+
+	ch->registers[0x0F] = ch->registers[x] & 0x80;
+	ch->registers[x] = ch->registers[x] * 2;
+}
