@@ -181,12 +181,12 @@ void chip_rnd_xkk(chip *ch) {
 }
 
 // Ex9E
-void chip_skp_x(chip *ch) {
+void chip_skp_xk(chip *ch) {
 	if (ch->keyboard[ch->registers[fetch_x(ch)]]) ch->pc += 2;
 }
 
 // ExA1
-void chip_sknp_x(chip *ch) {
+void chip_sknp_xk(chip *ch) {
 	if (!ch->keyboard[ch->registers[fetch_x(ch)]]) ch->pc += 2;
 }
 
