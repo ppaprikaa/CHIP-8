@@ -158,3 +158,8 @@ void chip_shl_xy(chip *ch) {
 	ch->registers[0x0F] = ch->registers[x] & 0x80;
 	ch->registers[x] = ch->registers[x] * 2;
 }
+
+// 9xy0
+void chip_sne_xy(chip *ch) {
+	if (ch->registers[fetch_x(ch)] != ch->registers[fetch_y(ch)]) ch->pc += 2;
+}
