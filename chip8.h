@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef CHIP8_HEADER
-#define CHIP8_HEADER
+#ifndef CHIP8_H
+#define CHIP8_H
 #include <stdint.h>
 
 typedef struct {
