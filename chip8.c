@@ -235,6 +235,21 @@ void chip_ld_xdt(chip *ch) {
 	ch->registers[fetch_x(ch)] = ch->dt;
 }
 
+// Fx0A
+void chip_ld_kx(chip *ch) {
+	int pressed = 0;
+	for (uint8_t i = 0; i < 16; i++)	{
+		if (ch->keyboard[i]) {
+			ch->registers[fetch_x(ch)] = i;
+			pressed = 1;
+		}
+	}
+
+	if (!pressed) {
+		ch->pc -= 2;
+	}
+}
+
 // Fx15
 void chip_ld_dtx(chip *ch) {
 	ch->dt = ch->registers[fetch_x(ch)];
