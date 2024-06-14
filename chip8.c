@@ -223,3 +223,8 @@ void chip_ld_imx(chip *ch) {
 	ch->mem[i + 1] = (num - (ch->mem[i] * 100)) / 10;
 	ch->mem[i + 2] = num - ch->mem[i] * 100 - ch->mem[i + 1] * 10;
 }
+
+// Fx55
+void chip_ld_irmx(chip *ch) {
+	for (size_t i = 0; i < fetch_x(ch); i++) ch->mem[ch->i + i] = ch->registers[i];
+}
