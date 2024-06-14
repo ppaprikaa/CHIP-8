@@ -214,3 +214,12 @@ void chip_add_ix(chip *ch) {
 void chip_ld_ifx(chip *ch) {
 	ch->i = (uint16_t)ch->registers[fetch_x(ch)] * 0x05;
 }
+
+// Fx33
+void chip_ld_imx(chip *ch) {
+	uint8_t num = ch->registers[fetch_x(ch)];
+	uint16_t i = ch->i;
+	ch->mem[i] = num / 100;
+	ch->mem[i + 1] = (num - (ch->mem[i] * 100)) / 10;
+	ch->mem[i + 2] = num - ch->mem[i] * 100 - ch->mem[i + 1] * 10;
+}
