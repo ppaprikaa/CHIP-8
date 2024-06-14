@@ -194,3 +194,8 @@ void chip_sknp_xk(chip *ch) {
 void chip_ld_xdt(chip *ch) {
 	ch->registers[fetch_x(ch)] = ch->dt;
 }
+
+// Fx15
+void chip_ld_dtx(chip *ch) {
+	ch->dt = ch->registers[fetch_x(ch)];
+}
