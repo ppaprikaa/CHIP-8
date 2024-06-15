@@ -10,18 +10,15 @@ int main(int argc, char *argv[argc + 1]) {
 	}
 
 	chip c;
+	conf conf;
 
-	if (chip_init(&c)) {
-		fprintf(stderr, "error: failed chip initialization\n");
-		return EXIT_FAILURE;
-	}
+	if (readconf(&conf, "chip8.conf")) return EXIT_FAILURE;
+
+	if (chip_init(&c)) return EXIT_FAILURE;
 
 	if (load_rom(&c, argv[1])) return EXIT_FAILURE;	
 	
-	if (chip_run(&c)) {
-		fprintf(stderr, "error: chip runtime error\n");
-		return EXIT_FAILURE;
-	}
+	if (chip_run(&c, &conf)) return EXIT_FAILURE;
 
 	return EXIT_SUCCESS;
 }
