@@ -7,7 +7,7 @@
 typedef struct {
 	uint32_t screen_width;
 	uint32_t screen_height;
-	uint64_t frame_delay;
+	uint32_t frame_delay;
 } conf;
 
 int readconf(conf *c, char *filepath);
